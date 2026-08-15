@@ -59,7 +59,7 @@
 &kp TAB     &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &kp LBKT  &kp RBKT       &kp BSPC
 &kp LCTRL     &kp A  &kp S  &kp D  &kp F  &kp G  &ctrl_h_left &ctrl_j_down &ctrl_k_up &ctrl_l_right &kp SEMI &kp SQT &kp RET
 &kp LSHIFT         &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA &kp DOT &kp FSLH &kp RSHIFT &mo FN
-                          &kp LALT &kp LGUI             &kp SPACE                &kp RGUI &kp RALT
+                 &none &kp LALT &kp LGUI             &kp SPACE                &kp RGUI &kp RALT &none
             >;
         };
 
@@ -70,7 +70,7 @@
 &kp CLCK &trans &trans &trans &trans &trans &trans &Device_USB &UF_BT1 &UF_BT2 &UF_BT3 &kp UP &kp PRINTSCREEN &kp DELETE
 &trans     &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE &trans &trans &trans &trans &kp HOME &kp PAGE_UP &kp LEFT &kp RIGHT &trans
 &trans          &trans &trans &trans &trans &UF_RESET &trans &trans &kp END &kp PAGE_DOWN &kp DOWN &trans &trans
-                              &trans &trans              &trans                    &trans &trans
+                       &none &trans &trans              &trans                    &trans &trans &none
             >;
         };
 

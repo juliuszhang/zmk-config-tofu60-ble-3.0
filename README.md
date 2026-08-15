@@ -2,8 +2,9 @@
 
 ## HHKB build
 
-The `tofu60_ble_v3_hhkb` shield adds a true 60-key HHKB physical layout and
-uses a macOS-only keymap:
+The `tofu60_ble_v3_hhkb` shield uses the vendor-tested ANSI 7U matrix with
+the `layout3` physical layout and a macOS-only HHKB keymap. The two unused
+outer bottom-row matrix positions are disabled.
 
 - Layer 0 — macOS: `Option`, `Command`, Space, `Command`, `Option`
 - Layer 1 — HHKB Fn layer
@@ -29,3 +30,17 @@ The GitHub Actions artifact for this layout is built with:
 board: klink
 shield: tofu60_ble_v3_hhkb
 ```
+
+ZMK Studio is intentionally disabled for this build so persisted Studio
+layout/keymap data cannot interfere with the fixed HHKB keymap.
+
+### Safe flashing sequence
+
+Changing from a Studio-enabled build may leave persistent layout or keymap
+settings in flash. Flash the generated files in this order:
+
+1. `settings_reset-klink-zmk.uf2`
+2. `tofu60_ble_v3_hhkb-klink-zmk.uf2`
+
+The settings reset clears Bluetooth pairings and other saved ZMK settings.
+Re-pair Bluetooth devices after flashing the HHKB firmware.
