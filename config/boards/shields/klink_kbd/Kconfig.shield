@@ -5,6 +5,10 @@ config SHIELD_TOFU60_BLE_V3_ANSI_625U
     def_bool $(shields_list_contains,tofu60_ble_v3_ansi_625u)
     select SPI
 
+config SHIELD_TOFU60_BLE_V3_HHKB
+    def_bool $(shields_list_contains,tofu60_ble_v3_hhkb)
+    select SPI
+
 config SHIELD_TOFU60_BLE_V3_ANSI_7U
     def_bool $(shields_list_contains,tofu60_ble_v3_ansi_7u)
     select SPI
