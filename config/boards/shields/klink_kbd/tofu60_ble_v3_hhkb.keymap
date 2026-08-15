@@ -5,22 +5,75 @@
  * Layer 1: HHKB function layer
  */
 
-#include "common.keymap"
+#define ZMK_BEHAVIORS_OMIT_CAPS_WORD
+#define ZMK_BEHAVIORS_OMIT_KT
+#define ZMK_BEHAVIORS_OMIT_KEY_REPEAT
+#define ZMK_BEHAVIORS_OMIT_SK
+#define ZMK_BEHAVIORS_OMIT_STICKY_LAYER
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
 
 #define FN 1
 
-#define UF_RESET bootloader_reset 0 0
-#define UF_BT1 device_bt1 0 0
-#define UF_BT2 device_bt2 0 1
-#define UF_BT3 device_bt3 0 2
+#define UF_RESET hhkb_bootloader_reset 0 0
+#define UF_BT1 hhkb_device_bt1 0 0
+#define UF_BT2 hhkb_device_bt2 0 1
+#define UF_BT3 hhkb_device_bt3 0 2
 
 / {
     behaviors {
+        ZMK_MACRO(hhkb_bt_clear_0, bindings = <&bt BT_SEL 0>, <&bt BT_CLR>;)
+        ZMK_MACRO(hhkb_bt_clear_1, bindings = <&bt BT_SEL 1>, <&bt BT_CLR>;)
+        ZMK_MACRO(hhkb_bt_clear_2, bindings = <&bt BT_SEL 2>, <&bt BT_CLR>;)
+        ZMK_MACRO(hhkb_bt_connect_0, bindings = <&out OUT_BLE>, <&bt BT_SEL 0>;)
+        ZMK_MACRO(hhkb_bt_connect_1, bindings = <&out OUT_BLE>, <&bt BT_SEL 1>;)
+        ZMK_MACRO(hhkb_bt_connect_2, bindings = <&out OUT_BLE>, <&bt BT_SEL 2>;)
+
+        hhkb_device_bt1: hhkb_device_bt1 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <3000>;
+            bindings = <&hhkb_bt_clear_0>, <&hhkb_bt_connect_0>;
+            display-name = "Bluetooth 1";
+        };
+
+        hhkb_device_bt2: hhkb_device_bt2 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <3000>;
+            bindings = <&hhkb_bt_clear_1>, <&hhkb_bt_connect_1>;
+            display-name = "Bluetooth 2";
+        };
+
+        hhkb_device_bt3: hhkb_device_bt3 {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <3000>;
+            bindings = <&hhkb_bt_clear_2>, <&hhkb_bt_connect_2>;
+            display-name = "Bluetooth 3";
+        };
+
+        hhkb_bootloader_reset: hhkb_bootloader_reset {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <3000>;
+            bindings = <&bootloader>, <&sys_reset>;
+            display-name = "Bootloader / Reset";
+        };
+
         ctrl_h_left: ctrl_h_left {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp H>, <&kp LEFT>;
             mods = <(MOD_LCTL | MOD_RCTL)>;
+            keep-mods = <0>;
             display-name = "Ctrl+H Left";
         };
 
@@ -29,6 +82,7 @@
             #binding-cells = <0>;
             bindings = <&kp J>, <&kp DOWN>;
             mods = <(MOD_LCTL | MOD_RCTL)>;
+            keep-mods = <0>;
             display-name = "Ctrl+J Down";
         };
 
@@ -37,6 +91,7 @@
             #binding-cells = <0>;
             bindings = <&kp K>, <&kp UP>;
             mods = <(MOD_LCTL | MOD_RCTL)>;
+            keep-mods = <0>;
             display-name = "Ctrl+K Up";
         };
 
@@ -45,6 +100,7 @@
             #binding-cells = <0>;
             bindings = <&kp L>, <&kp RIGHT>;
             mods = <(MOD_LCTL | MOD_RCTL)>;
+            keep-mods = <0>;
             display-name = "Ctrl+L Right";
         };
     };
@@ -67,18 +123,11 @@
             display-name = "HHKB Fn";
             bindings = <
 &trans  &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12 &kp INSERT &kp DELETE
-&kp CLCK &trans &trans &trans &trans &trans &trans &Device_USB &UF_BT1 &UF_BT2 &UF_BT3 &kp UP &kp PRINTSCREEN &kp DELETE
+&kp CLCK &trans &trans &trans &trans &trans &trans &out OUT_USB &UF_BT1 &UF_BT2 &UF_BT3 &kp UP &kp PRINTSCREEN &kp DELETE
 &trans     &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE &trans &trans &trans &trans &kp HOME &kp PAGE_UP &kp LEFT &kp RIGHT &trans
 &trans          &trans &trans &trans &trans &UF_RESET &trans &trans &kp END &kp PAGE_DOWN &kp DOWN &trans &trans
                        &none &trans &trans              &trans                    &trans &trans &none
             >;
         };
-
-        layer2 { status = "reserved"; };
-        layer3 { status = "reserved"; };
-        layer4 { status = "reserved"; };
-        layer5 { status = "reserved"; };
-        layer6 { status = "reserved"; };
-        layer7 { status = "reserved"; };
     };
 };

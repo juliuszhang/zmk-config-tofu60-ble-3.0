@@ -1,20 +1,17 @@
-# zmk-config-tofu60-ble-3.0
+# Tofu60 BLE 3.0 — macOS HHKB firmware
 
-## HHKB build
+This repository builds only the macOS HHKB layout. The dedicated
+`tofu60_ble_v3_hhkb` shield keeps the vendor-tested matrix wiring; the two
+unused outer bottom-row matrix positions are disabled.
 
-The `tofu60_ble_v3_hhkb` shield uses the vendor-tested ANSI 7U matrix with
-the `layout3` physical layout and a macOS-only HHKB keymap. The two unused
-outer bottom-row matrix positions are disabled.
+## Layout
 
 - Layer 0 — macOS: `Option`, `Command`, Space, `Command`, `Option`
 - Layer 1 — HHKB Fn layer
-- Layers 2–7 — reserved
-
-The HHKB conventions are preserved: Control replaces Caps Lock, Backspace is
-at the end of the QWERTY row, grave is at the top-right, and Fn is at the
-bottom-right of the Shift row.
-
-### Ctrl navigation
+- Control replaces Caps Lock.
+- Backspace is at the end of the QWERTY row.
+- Grave is at the top-right.
+- Fn is at the bottom-right of the Shift row.
 
 Holding either Control key changes the Vim home-row keys into unmodified arrow
 keys:
@@ -24,35 +21,30 @@ keys:
 - `Ctrl+K` — Up
 - `Ctrl+L` — Right
 
-The GitHub Actions artifact for this layout is built with:
+On the Fn layer, `U` selects USB and `I`, `O`, `P` select Bluetooth
+profiles 1–3. Holding a Bluetooth profile key for three seconds clears that
+profile. Hold `Fn+B` for about three seconds to enter the bootloader.
 
-```text
-board: klink
-shield: tofu60_ble_v3_hhkb
-```
+ZMK Studio is intentionally disabled so persisted Studio layout data cannot
+interfere with the fixed HHKB keymap.
 
-ZMK Studio is intentionally disabled for this build so persisted Studio
-layout/keymap data cannot interfere with the fixed HHKB keymap.
+## Firmware files
 
-### Safe flashing sequence
+- `tofu60_ble_v3_hhkb-klink-zmk.uf2` — normal firmware
+- `tofu60_ble_v3_hhkb_CLEAR-klink-zmk.uf2` — recovery build that clears
+  persistent settings on every boot
 
-#### With a physical reset button
+The recovery build uses the USB name `HHKB CLEAR USB` and Bluetooth name
+`HHKB CLEAR`, so it is visibly different from the normal firmware. Do not
+leave the recovery build installed.
 
-1. Enter the bootloader.
-2. Flash `settings_reset-klink-zmk.uf2`.
-3. Enter the bootloader again.
-4. Flash `tofu60_ble_v3_hhkb-klink-zmk.uf2`.
-
-#### Without a physical reset button
+## Safe flashing without a physical reset button
 
 1. On the currently working firmware, hold `Fn+B` for about three seconds.
-2. Flash `tofu60_ble_v3_hhkb_clear-klink-zmk.uf2`.
+2. Flash `tofu60_ble_v3_hhkb_CLEAR-klink-zmk.uf2`.
 3. Wait for it to boot and clear the persisted settings.
 4. Hold `Fn+B` for about three seconds to enter the bootloader again.
 5. Flash `tofu60_ble_v3_hhkb-klink-zmk.uf2`.
 
-The HHKB clear build has the normal HHKB keymap and bootloader shortcut, but
-it erases persistent settings on every boot. Do not leave it installed.
-
-Both reset methods clear Bluetooth pairings and other saved ZMK settings.
-Re-pair Bluetooth devices after flashing the HHKB firmware.
+The recovery build clears Bluetooth pairings and other saved ZMK settings.
+Re-pair Bluetooth devices after the normal firmware is installed.

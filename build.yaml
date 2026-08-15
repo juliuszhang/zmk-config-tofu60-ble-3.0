@@ -17,23 +17,5 @@ include:
     shield: tofu60_ble_v3_hhkb
   - board: klink
     shield: tofu60_ble_v3_hhkb
-    artifact-name: tofu60_ble_v3_hhkb_clear-klink-zmk
-    cmake-args: -DCONFIG_ZMK_SETTINGS_RESET_ON_START=y
-  - board: klink
-    shield: settings_reset
-  - board: klink
-    shield: tofu60_ble_v3_ansi_625u
-    snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y
-  - board: klink
-    shield: tofu60_ble_v3_ansi_7u
-    snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y
-  - board: klink
-    shield: tofu60_ble_v3_iso_625u
-    snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y
-  - board: klink
-    shield: tofu60_ble_v3_iso_7u
-    snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y
+    artifact-name: tofu60_ble_v3_hhkb_CLEAR-klink-zmk
+    cmake-args: '-DCONFIG_ZMK_SETTINGS_RESET_ON_START=y -DCONFIG_ZMK_KEYBOARD_NAME="HHKB CLEAR USB" -DCONFIG_BT_DEVICE_NAME="HHKB CLEAR"'

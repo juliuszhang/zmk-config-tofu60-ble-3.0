@@ -7,20 +7,11 @@
 
 #include <zmk/battery.h>
 #include <zmk/ble.h>
-#include <zmk/endpoints.h>
 #include <zmk/hid_indicators.h>
 #include <zmk/events/ble_active_profile_changed.h>
-#include <zmk/events/split_peripheral_status_changed.h>
 #include <zmk/events/battery_state_changed.h>
 #include <zmk/events/hid_indicators_changed.h>
-#include <zmk/keymap.h>
-#include <zmk/split/bluetooth/peripheral.h>
-
-#include <math.h>
-
-#define NUMLOCK_BIT BIT(0)
 #define CAPSLOCK_BIT BIT(1)
-#define SCROLLLOCK_BIT BIT(2)
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
@@ -106,31 +97,6 @@ static void ble_active_profile_update_cb(const zmk_event_t *eh) {
 
 ZMK_LISTENER(ble_active_profile_listener, ble_active_profile_update_cb);
 ZMK_SUBSCRIPTION(ble_active_profile_listener, zmk_ble_active_profile_changed);
-
-#include <zmk/events/keycode_state_changed.h>
-static int zmk_handle_keycode_user(struct zmk_keycode_state_changed *event) {
-    zmk_key_t key = event->keycode;
-    LOG_DBG("key 0x%X", key);
-    if (key == 0xAB) {
-        ble_active_profile_update();
-    }
-    return ZMK_EV_EVENT_HANDLED;
-}
-
-static int keycode_user_listener(const zmk_event_t *eh) {
-    struct zmk_keycode_state_changed *kc_state;
-
-    kc_state = as_zmk_keycode_state_changed(eh);
-
-    if (kc_state != NULL) {
-        return zmk_handle_keycode_user(kc_state);
-    }
-
-    return 0;
-}
-
-ZMK_LISTENER(keycode_user, keycode_user_listener);
-ZMK_SUBSCRIPTION(keycode_user, zmk_keycode_state_changed);
 
 #if IS_ENABLED(CONFIG_ZMK_BATTERY_REPORTING)
 static int led_battery_listener_cb(const zmk_event_t *eh) {
