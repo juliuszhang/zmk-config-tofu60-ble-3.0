@@ -16,6 +16,10 @@ include:
   - board: klink
     shield: tofu60_ble_v3_hhkb
   - board: klink
+    shield: tofu60_ble_v3_hhkb
+    artifact-name: tofu60_ble_v3_hhkb_clear-klink-zmk
+    cmake-args: -DCONFIG_ZMK_SETTINGS_RESET_ON_START=y
+  - board: klink
     shield: settings_reset
   - board: klink
     shield: tofu60_ble_v3_ansi_625u

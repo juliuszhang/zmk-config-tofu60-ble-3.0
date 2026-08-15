@@ -36,11 +36,23 @@ layout/keymap data cannot interfere with the fixed HHKB keymap.
 
 ### Safe flashing sequence
 
-Changing from a Studio-enabled build may leave persistent layout or keymap
-settings in flash. Flash the generated files in this order:
+#### With a physical reset button
 
-1. `settings_reset-klink-zmk.uf2`
-2. `tofu60_ble_v3_hhkb-klink-zmk.uf2`
+1. Enter the bootloader.
+2. Flash `settings_reset-klink-zmk.uf2`.
+3. Enter the bootloader again.
+4. Flash `tofu60_ble_v3_hhkb-klink-zmk.uf2`.
 
-The settings reset clears Bluetooth pairings and other saved ZMK settings.
+#### Without a physical reset button
+
+1. On the currently working firmware, hold `Fn+B` for about three seconds.
+2. Flash `tofu60_ble_v3_hhkb_clear-klink-zmk.uf2`.
+3. Wait for it to boot and clear the persisted settings.
+4. Hold `Fn+B` for about three seconds to enter the bootloader again.
+5. Flash `tofu60_ble_v3_hhkb-klink-zmk.uf2`.
+
+The HHKB clear build has the normal HHKB keymap and bootloader shortcut, but
+it erases persistent settings on every boot. Do not leave it installed.
+
+Both reset methods clear Bluetooth pairings and other saved ZMK settings.
 Re-pair Bluetooth devices after flashing the HHKB firmware.
