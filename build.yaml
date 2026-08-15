@@ -18,4 +18,4 @@ include:
   - board: klink
     shield: tofu60_ble_v3_hhkb
     artifact-name: tofu60_ble_v3_hhkb_CLEAR-klink-zmk
-    cmake-args: '-DCONFIG_ZMK_SETTINGS_RESET_ON_START=y -DCONFIG_ZMK_KEYBOARD_NAME="HHKB CLEAR USB" -DCONFIG_BT_DEVICE_NAME="HHKB CLEAR"'
+    cmake-args: '-DCONFIG_ZMK_SETTINGS_RESET_ON_START=y -DCONFIG_ZMK_KEYBOARD_NAME=\"HHKB_CLEAR_USB\" -DCONFIG_BT_DEVICE_NAME=\"HHKB_CLEAR\"'

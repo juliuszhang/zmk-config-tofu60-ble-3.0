@@ -34,8 +34,8 @@ interfere with the fixed HHKB keymap.
 - `tofu60_ble_v3_hhkb_CLEAR-klink-zmk.uf2` — recovery build that clears
   persistent settings on every boot
 
-The recovery build uses the USB name `HHKB CLEAR USB` and Bluetooth name
-`HHKB CLEAR`, so it is visibly different from the normal firmware. Do not
+The recovery build uses the USB name `HHKB_CLEAR_USB` and Bluetooth name
+`HHKB_CLEAR`, so it is visibly different from the normal firmware. Do not
 leave the recovery build installed.
 
 ## Safe flashing without a physical reset button
