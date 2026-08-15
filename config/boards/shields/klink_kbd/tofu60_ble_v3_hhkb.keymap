@@ -25,12 +25,18 @@
 
 / {
     behaviors {
-        ZMK_MACRO(hhkb_bt_clear_0, bindings = <&bt BT_SEL 0>, <&bt BT_CLR>;)
-        ZMK_MACRO(hhkb_bt_clear_1, bindings = <&bt BT_SEL 1>, <&bt BT_CLR>;)
-        ZMK_MACRO(hhkb_bt_clear_2, bindings = <&bt BT_SEL 2>, <&bt BT_CLR>;)
-        ZMK_MACRO(hhkb_bt_connect_0, bindings = <&out OUT_BLE>, <&bt BT_SEL 0>;)
-        ZMK_MACRO(hhkb_bt_connect_1, bindings = <&out OUT_BLE>, <&bt BT_SEL 1>;)
-        ZMK_MACRO(hhkb_bt_connect_2, bindings = <&out OUT_BLE>, <&bt BT_SEL 2>;)
+        indicator_refresh: indicator_refresh {
+            compatible = "klink,behavior-indicator-refresh";
+            #binding-cells = <0>;
+            display-name = "Refresh Indicator";
+        };
+
+        ZMK_MACRO(hhkb_bt_clear_0, bindings = <&bt BT_SEL 0>, <&bt BT_CLR>, <&indicator_refresh>;)
+        ZMK_MACRO(hhkb_bt_clear_1, bindings = <&bt BT_SEL 1>, <&bt BT_CLR>, <&indicator_refresh>;)
+        ZMK_MACRO(hhkb_bt_clear_2, bindings = <&bt BT_SEL 2>, <&bt BT_CLR>, <&indicator_refresh>;)
+        ZMK_MACRO(hhkb_bt_connect_0, bindings = <&out OUT_BLE>, <&bt BT_SEL 0>, <&indicator_refresh>;)
+        ZMK_MACRO(hhkb_bt_connect_1, bindings = <&out OUT_BLE>, <&bt BT_SEL 1>, <&indicator_refresh>;)
+        ZMK_MACRO(hhkb_bt_connect_2, bindings = <&out OUT_BLE>, <&bt BT_SEL 2>, <&indicator_refresh>;)
 
         hhkb_device_bt1: hhkb_device_bt1 {
             compatible = "zmk,behavior-hold-tap";

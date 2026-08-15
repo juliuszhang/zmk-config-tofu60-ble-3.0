@@ -1,0 +1,6 @@
+# Copyright (c) 2026
+# SPDX-License-Identifier: MIT
+
+description: Refresh the Klink keyboard status indicator
+compatible: "klink,behavior-indicator-refresh"
+include: zero_param.yaml
