@@ -21,9 +21,11 @@ keys:
 - `Ctrl+K` — Up
 - `Ctrl+L` — Right
 
-On the Fn layer, `U` selects USB and `I`, `O`, `P` select Bluetooth
+On the Fn layer, `U` selects USB and `Z`, `X`, `C` select Bluetooth
 profiles 1–3. Holding a Bluetooth profile key for three seconds clears that
-profile. Hold `Fn+B` for about three seconds to enter the bootloader.
+profile. The profile keys are kept away from the `[ ; ' /` arrow cluster so an
+arrow keypress cannot switch profiles by accident; `Fn+I`, `Fn+O` and `Fn+P`
+do nothing. Hold `Fn+B` for about three seconds to enter the bootloader.
 
 ZMK Studio is intentionally disabled so persisted Studio layout data cannot
 interfere with the fixed HHKB keymap.
